@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Pacifico&family=Prata&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            font-family: "Outfit", serif;
+            background-color: #fff3e0;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #ff9800;
+            margin: 20px 0;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1rem;
+            padding: 10px 15px;
+            background-color: transparent;
+            border: 2px solid #ff9800;
+            color: #ff9800;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .back-button:hover {
+            background-color: #ff9800;
+            color: white;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin-bottom: 30px;
+        }
+        .video-box {
+            width: 100%;
+            height: 350px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+            flex-direction: column;
+        }
+        .video-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: black;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            font-size: 1rem;
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .pagination button:hover {
+            background-color: #f57c00;
+        }
+        .page-number-box {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #ff9800;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        .video-button {
+            font-size: 1rem;
+            padding: 12px 20px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        .video-button:hover {
+            background-color: #f57c00;
+        }
+        @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.video-box {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+button {
+    animation: bounce 0.3s ease-in-out;
+}
+
+h1 {
+    animation: fadeIn 1s ease-in-out;
+}
+
+    </style>
+    <script>
+        let currentPage = 1;
+        const videosPerPage = 4;
+
+        function showPage(page) {
+            let videos = document.querySelectorAll(".video-box");
+            let totalPages = Math.ceil(videos.length / videosPerPage);
+            if (page < 1) page = 1;
+            if (page > totalPages) page = totalPages;
+
+            videos.forEach((video, index) => {
+                video.classList.add("hidden");
+                if (index >= (page - 1) * videosPerPage && index < page * videosPerPage) {
+                    video.classList.remove("hidden");
+                }
+            });
+
+            document.getElementById("page-number").innerText = page;
+            currentPage = page;
+        }
+
+        function nextPage() {
+            showPage(currentPage + 1);
+        }
+
+        function prevPage() {
+            showPage(currentPage - 1);
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function goToPage(page) {
+            window.location.href = page;
+        }
+
+        window.onload = () => showPage(currentPage);
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
+    <h1>Mga Videos Nato Loover</h1>
+
+    <div class="gallery">
+        <!-- Sample videos, replace with actual sources -->
+        <div class="video-box"><video src="video1.mp4" controls></video></div>
+        <div class="video-box"><video src="b026162d-ea03-406d-b60b-026d9ca325bf.mp4" controls></video></div>
+        <div class="video-box"><video src="video3.mp4" controls></video></div>
+        <div class="video-box"><video src="video4.mp4" controls></video></div>
+        <div class="video-box"><video src="9b3afe64-740c-4ebf-a043-b5a753ff80f2.mp4" controls></video></div>
+        <div class="video-box"><video src="video6.mp4" controls></video></div>
+        <div class="video-box"><video src="video7.mp4" controls></video></div>
+        <div class="video-box"><video src="251962f4-5f25-4b16-9569-64802448cd58.mp4" controls></video></div>
+        <div class="video-box"><video src="video9.mp4" controls></video></div>
+        <div class="video-box"><video src="video10.mp4" controls></video></div>
+    </div>
+
+    <div class="pagination">
+        <button onclick="prevPage()">Previous</button>
+        <div class="page-number-box" id="page-number">1</div>
+        <button onclick="nextPage()">Next</button>
+    </div>
+
+    <button class="video-button" onclick="goToPage('pictures.html')">Go to Pictures</button>
+
+</body>
+</html>

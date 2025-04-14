@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Feelings</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffe0b2;
+            text-align: center;
+        }
+
+        .content-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+            width: 60%;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        .image-container {
+            width: 100%;
+            max-height: 400px;
+            overflow: hidden;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            display: block;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 1.5s ease-out 0.5s forwards;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff9800;
+            margin: 15px 0;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #444;
+            padding: 0 20px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #f57c00;
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="content-box">
+        <div class="image-container">
+            <img src="380106572_1349898142293942_3512203035170318391_n.jpg" alt="Memory 2">
+        </div>
+        <h1>Memory 2</h1>
+        <p>This picture reminds me of the happiest moments we shared. It brings back the warmth of your smile, the sound of your laughter, and the love we have for each other. Every moment with you is precious, and this image captures a part of my heart.</p>
+    </div>
+
+    <button class="back-button" onclick="history.back()">Go Back</button>
+
+</body>
+</html>

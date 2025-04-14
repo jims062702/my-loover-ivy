@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Your Special Date</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Fade-in Animation on Page Load */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            opacity: 0; /* Initially hidden */
+            transform: translateY(-20px); /* Move slightly up */
+            animation: fadeIn 1.2s ease-out forwards; /* Apply animation */
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 15px;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #e91e63;
+            color: white;
+            transition: background 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #d81b60;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Loader Overlay */
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            display: none; /* Initially hidden */
+        }
+
+        /* Loader Animation */
+        .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #e91e63;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            input {
+                font-size: 1rem;
+                padding: 10px;
+            }
+            button {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <div class="container">
+        <h1>Enter Our Monthsary!</h1>
+        <input type="text" id="dateInput" placeholder="MM/DD/YYYY" maxlength="10">
+        <button onclick="checkDate()">Submit</button>
+    </div>
+
+    <script>
+        let eInput1 = document.getElementById("dateInput");
+
+        function showLoader() {
+            document.querySelector(".loader-overlay").style.display = "flex";
+        }
+
+        function checkDate() {
+            if (!eInput1.value.trim()) {
+                alert("Agay ayaw kalimti atung Monthsary Maldita!");
+                return;
+            }
+            let inputDate = document.getElementById("dateInput").value.trim();
+            
+            showLoader(); // Show loading animation
+
+            setTimeout(() => {
+                if (inputDate === "09/09/2023") {
+                    window.location.href = "your-my-girlfriend.html";
+                } else {
+                    window.location.href = "your-not-my-girlfriend.html";
+                }
+            }, 2000); // Delay navigation for 2 seconds
+        }
+
+        // Auto-format date input (MM/DD/YYYY)
+        document.getElementById("dateInput").addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+            if (value.length > 2) value = value.slice(0, 2) + "/" + value.slice(2);
+            if (value.length > 5) value = value.slice(0, 5) + "/" + value.slice(5);
+            e.target.value = value;
+        });
+    </script>
+
+</body>
+</html>
